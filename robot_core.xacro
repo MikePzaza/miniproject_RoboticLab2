@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<robot name="botpj2v1" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<xacro:include filename="inertial_macros.xacro" />
+
     <material name="white">
         <color rgba="1 1 1 1" />
     </material>
@@ -20,21 +22,39 @@
      <color rgba="1 0 0 1"/>
  </material>
     
-    <!-- BASE LINK -->
-    <link name="base_link">
-    </link>
+  <!-- BASE LINK -->
+  <link name="base_link">
+  </link>
     
+  <!-- BASE_FOOTPRINT LINK -->
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_footprint">
+  </link>
+
+  <!-- Joint between base_link and link_0  -->
+  <joint name="joint_0" type="fixed">
+    <parent link="base_link"/>
+    <child link="link_0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>  
+  </joint>        
+
 
   <!-- Link 0(baselink) -->
   <link name="link_0">
     <visual>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/baselink.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/baselink.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/baselink.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/baselink.dae" scale="1 1 1"/>
       </geometry>
     </collision>
     <xacro:inertial_box mass="4" x="0.480" y="0.510" z="0.33">
@@ -46,23 +66,25 @@
     </gazebo>
 
 
-  <!-- Joint between base_link and link_0  -->
-  <joint name="joint_0" type="fixed">
+  <!-- Joint between link_0 and base_link -->
+  <joint name="joint_1" type="revolute">
     <parent link="base_link"/>
-    <child link="link_0"/>
-    <origin xyz="-0.097289 -0.049023 -0.03252" rpy="0 0 0"/>  
-  </joint>         
+    <child link="link_1"/>
+    <origin xyz="0.170 0.08 0.06" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="5.0" velocity="1.0" lower="-0.540" upper="0.540"/>
+  </joint>
 
   <!-- Link 1 (T1)-->
   <link name="link_1">
     <visual>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/T1V2.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/T1V2.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/T1.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/T1.dae" scale="1 1 1"/>
       </geometry>
     </collision>
     <xacro:inertial_box mass="0.8" x="0.005" y="0.14" z="0.08">
@@ -73,12 +95,11 @@
     <material>Gazebo/White</material>
     </gazebo>
   
-
-  <!-- Joint between link_0 and base_link -->
-  <joint name="joint_1" type="revolute">
+  <!-- Joint between link_1 and base_link -->
+  <joint name="joint_2" type="revolute">
     <parent link="base_link"/>
-    <child link="link_1"/>
-    <origin xyz="0.073 0.05597 0.02748" rpy="0 0 0"/>
+    <child link="link_2"/>
+    <origin xyz="-0.181 0.08 0.06" rpy="0 0 0"/>
     <axis xyz="1 0 0"/>
     <limit effort="5.0" velocity="1.0" lower="-0.540" upper="0.540"/>
   </joint>
@@ -87,12 +108,12 @@
   <link name="link_2">
     <visual>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/T2V2.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/T2V2.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/T2V2.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/T2V2.dae" scale="1 1 1"/>
       </geometry>
     </collision>
     <xacro:inertial_box mass="0.8" x="0.005" y="0.14" z="0.08">
@@ -103,20 +124,19 @@
     <material>Gazebo/White</material>
     </gazebo>
 
-  <!-- Joint between link_1 and base_link -->
-  <joint name="joint_2" type="revolute">
+  <!-- Joint between link_0 and link_6 -->
+  <joint name="joint_6" type="continuous">
     <parent link="base_link"/>
-    <child link="link_2"/>
-    <origin xyz="-0.278289 0.055976 0.02748" rpy="0 0 0"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="5.0" velocity="1.0" lower="-0.540" upper="0.540"/>
+    <child link="link_6"/>
+    <origin xyz="-0.215 -0.16 0" rpy="0 -${pi/2}  0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <!-- Link 6 (W1)-->
   <link name="link_6">
     <visual>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/W1V2.dae" scale="1 1 1"/>
+        <cylinder radius="0.06" length="0.06"/>
       </geometry>
     </visual>
     <collision>
@@ -132,21 +152,19 @@
     <material>Gazebo/White</material>
     </gazebo>
 
-
-  <!-- Joint between link_0 and link_6 -->
-  <joint name="joint_6" type="continuous">
-    <parent link="base_link"/>
-    <child link="link_6"/>
-    <origin xyz="-0.312 -0.214023 -0.03252" rpy="0 0 0"/>
-    <axis xyz="1 0 0"/>
+  <!-- Joint between base_link and link_6_clone -->
+  <joint name="joint_6_clone" type="continuous">
+    <parent link="link_2"/>
+    <child link="link_6_clone"/>
+    <origin xyz="-0.035 -0.07 -0.06" rpy="0 1.57 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
-
 
  <!-- Link 6 Clone (W3)-->
   <link name="link_6_clone">
     <visual>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/W1V2.dae" scale="1 1 1"/>
+        <cylinder radius="0.06" length="0.06"/>
       </geometry>
     </visual>
     <collision>
@@ -162,20 +180,19 @@
     <material>Gazebo/White</material>
     </gazebo>
 
-
-  <!-- Joint between base_link and link_6_clone -->
-  <joint name="joint_6_clone" type="continuous">
+  <!-- Joint between link_2 and link_6_clone_clone -->
+  <joint name="joint_6_clone_clone" type="continuous">
     <parent link="link_2"/>
-    <child link="link_6_clone"/>
-    <origin xyz="-0.034 -0.07 -0.06" rpy="0 0 0"/>
-    <axis xyz="1 0 0"/>
+    <child link="link_6_clone_clone"/>
+    <origin xyz="-0.035 0.07 -0.06" rpy="0 1.57 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <!-- Link 6 Clone Clone (W5) -->
   <link name="link_6_clone_clone">
     <visual>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/W1V2.dae" scale="1 1 1"/>
+        <cylinder radius="0.06" length="0.06"/>
       </geometry>
     </visual>
     <collision>
@@ -191,20 +208,19 @@
     <material>Gazebo/White</material>
     </gazebo>
 
-
-  <!-- Joint between link_6_clone and link_6_clone_clone -->
-  <joint name="joint_6_clone_clone" type="continuous">
-    <parent link="link_2"/>
-    <child link="link_6_clone_clone"/>
-    <origin xyz="-0.034 0.07 -0.06" rpy="0 0 0"/>
-    <axis xyz="1 0 0"/>
+  <!-- Joint between base_link and link_7 -->
+  <joint name="joint_7" type="continuous">
+    <parent link="base_link"/>
+    <child link="link_7"/>
+    <origin xyz="0.205 -0.16 0" rpy="0 1.57 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <!-- Link 7 (W2)-->
   <link name="link_7">
     <visual>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/W2V2.dae" scale="1 1 1"/>
+        <cylinder radius="0.06" length="0.06"/>
       </geometry>
     </visual>
     <collision>
@@ -220,19 +236,19 @@
     <material>Gazebo/White</material>
     </gazebo>
 
-  <!-- Joint between base_link and link_7 -->
-  <joint name="joint_7" type="continuous">
-    <parent link="base_link"/>
-    <child link="link_7"/>
-    <origin xyz="0.106 -0.213773 -0.03252" rpy="0 0 0"/>
-    <axis xyz="1 0 0"/>
+  <!-- Joint between link_1 and link_7_clone -->
+  <joint name="joint_7_clone" type="continuous">
+    <parent link="link_1"/>
+    <child link="link_7_clone"/>
+    <origin xyz="0.035 -0.07 -0.06" rpy="0 1.57 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <!-- Link 7 Clone (W4)-->
   <link name="link_7_clone">
     <visual>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/W2V2.dae" scale="1 1 1"/>
+        <cylinder radius="0.06" length="0.06"/>
       </geometry>
     </visual>
     <collision>
@@ -248,19 +264,19 @@
     <material>Gazebo/White</material>
     </gazebo>
 
-  <!-- Joint between link_7 and link_7_clone -->
-  <joint name="joint_7_clone" type="continuous">
+  <!-- Joint between link_1 and link_7_clone_clone -->
+  <joint name="joint_7_clone_clone" type="continuous">
     <parent link="link_1"/>
-    <child link="link_7_clone"/>
-    <origin xyz="0.035 -0.07 -0.06" rpy="0 0 0"/>
-    <axis xyz="1 0 0"/>
+    <child link="link_7_clone_clone"/>
+    <origin xyz="0.035 0.07 -0.06" rpy="0 1.57 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <!-- Link 7 Clone Clone (W6)-->
   <link name="link_7_clone_clone">
     <visual>
       <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/W2V2.dae" scale="1 1 1"/>
+        <cylinder radius="0.06" length="0.06"/>
       </geometry>
     </visual>
     <collision>
@@ -275,105 +291,6 @@
     <gazebo reference="link_7_clone_clone">
     <material>Gazebo/White</material>
     </gazebo>
-
-  <!-- Joint between link_7_clone and link_7_clone_clone -->
-  <joint name="joint_7_clone_clone" type="continuous">
-    <parent link="link_1"/>
-    <child link="link_7_clone_clone"/>
-    <origin xyz="0.035 0.07 -0.06" rpy="0 0 0"/>
-    <axis xyz="1 0 0"/>
-  </joint>
-
- <!-- Link 8 (A1)-->
-  <link name="link_8">
-    <visual>
-      <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/A1V2.dae" scale="1 1 1"/>
-      </geometry>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/A1V2.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
-    <xacro:inertial_box mass="0.4" x="0.015" y="0.085" z="0.05">
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:inertial_box>
-    </link>
-    <gazebo reference="link_8">
-    <material>Gazebo/White</material>
-    </gazebo>
-
-
-  <!-- Joint between link_0 and link_8 -->
-  <joint name="joint_8" type="revolute">
-    <parent link="base_link"/>
-    <child link="link_8"/>
-    <origin xyz="-0.247521 -0.078748 0.018452" rpy="0 0 0"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="5.0" velocity="1.0" lower="-1.57" upper="1.57"/>
-  </joint>
-
-  <!-- Link 9 (A2)-->
-  <link name="link_9">
-    <visual>
-      <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/A2.dae" scale="1 1 1"/>
-      </geometry>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/A2.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
-    <xacro:inertial_box mass="0.3" x="0.015" y="0.180" z="0.1">
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:inertial_box> 
-  </link>
-    <gazebo reference="link_9">
-    <material>Gazebo/White</material>
-    </gazebo>
-
-
-  <!-- Joint between link_8 and link_9 -->
-  <joint name="joint_9" type="revolute">
-    <parent link="link_8"/>
-    <child link="link_9"/>
-    <origin xyz="0.015 -0.055 0" rpy="0 0 0"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="5.0" velocity="1.0" lower="-1" upper="1.57"/>
-  </joint>
-
-
-  <!-- Link 10 (A3)-->
-  <link name="link_10">
-    <visual>
-      <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/A3.dae" scale="1 1 1"/>
-      </geometry>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="/home/mikepzaza/Desktop/project2/src/articubot_two/A3.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
-    <xacro:inertial_box mass="0.2" x="0.015" y="0.180" z="0.1">
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:inertial_box>
-  </link>
-    <gazebo reference="link_10">
-    <material>Gazebo/White</material>
-    </gazebo>
-
-  <!-- Joint between link_9 and link_10 -->
-  <joint name="joint_10" type="prismatic">
-    <parent link="link_9"/>
-    <child link="link_10"/>
-    <origin xyz="0.28 -0.0125 0" rpy="0 0 0"/>
-    <axis xyz="1 0 0"/>
-   <limit lower="-0.2625" upper="0" effort="10.0" velocity="0.5"/>
-   <dynamics damping="0.1" friction="0.05"/>
-  </joint>
 
 
 </robot>
