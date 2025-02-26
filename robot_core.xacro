@@ -2,25 +2,30 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 <xacro:include filename="inertial_macros.xacro" />
 
-    <material name="white">
-        <color rgba="1 1 1 1" />
-    </material>
+  <material name="white">
+    <color rgba="1 1 1 1" />
+  </material>
 
-    <material name="orange">
-        <color rgba="1 0.3 0.1 1"/>
-    </material>
+  <material name="orange">
+    <color rgba="1 0.3 0.1 1"/>
+  </material>
 
-    <material name="blue">
-        <color rgba="0.2 0.2 1 1"/>
-    </material>
+  <material name="blue">
+    <color rgba="0.2 0.2 1 1"/>
+  </material>
 
-    <material name="black">
-        <color rgba="0 0 0 1"/>
-    </material>
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
    
  <material name="red">
-     <color rgba="1 0 0 1"/>
+    <color rgba="1 0 0 1"/>
  </material>
+
+ <material name="grey">
+    <color rgba="0.5 0.5 0.5 1"/>
+ </material>
+
     
   <!-- BASE LINK -->
   <link name="base_link">
@@ -128,7 +133,7 @@
   <joint name="joint_6" type="continuous">
     <parent link="base_link"/>
     <child link="link_6"/>
-    <origin xyz="-0.215 -0.16 0" rpy="0 -${pi/2}  0"/>
+    <origin xyz="-0.215 -0.16 0" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -136,12 +141,12 @@
   <link name="link_6">
     <visual>
       <geometry>
-        <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </collision>
     <xacro:inertial_cylinder mass="0.3" length="0.06" radius="0.06">
@@ -149,14 +154,14 @@
     </xacro:inertial_cylinder>
   </link>
     <gazebo reference="link_6">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Grey</material>
     </gazebo>
 
   <!-- Joint between base_link and link_6_clone -->
   <joint name="joint_6_clone" type="continuous">
     <parent link="link_2"/>
     <child link="link_6_clone"/>
-    <origin xyz="-0.035 -0.07 -0.06" rpy="0 1.57 0"/>
+    <origin xyz="-0.035 -0.07 -0.06" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -164,12 +169,12 @@
   <link name="link_6_clone">
     <visual>
       <geometry>
-        <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-          <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </collision>
     <xacro:inertial_cylinder mass="0.3" length="0.06" radius="0.06">
@@ -177,14 +182,14 @@
     </xacro:inertial_cylinder>
   </link>
     <gazebo reference="link_6_clone">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Grey</material>
     </gazebo>
 
   <!-- Joint between link_2 and link_6_clone_clone -->
   <joint name="joint_6_clone_clone" type="continuous">
     <parent link="link_2"/>
     <child link="link_6_clone_clone"/>
-    <origin xyz="-0.035 0.07 -0.06" rpy="0 1.57 0"/>
+    <origin xyz="-0.035 0.07 -0.06" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -192,12 +197,12 @@
   <link name="link_6_clone_clone">
     <visual>
       <geometry>
-        <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-          <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </collision>
     <xacro:inertial_cylinder mass="0.3" length="0.06" radius="0.06">
@@ -205,14 +210,14 @@
     </xacro:inertial_cylinder>
   </link>
     <gazebo reference="link_6_clone_clone">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Grey</material>
     </gazebo>
 
   <!-- Joint between base_link and link_7 -->
   <joint name="joint_7" type="continuous">
     <parent link="base_link"/>
     <child link="link_7"/>
-    <origin xyz="0.205 -0.16 0" rpy="0 1.57 0"/>
+    <origin xyz="0.205 -0.16 0" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -220,12 +225,12 @@
   <link name="link_7">
     <visual>
       <geometry>
-        <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-          <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </collision>
     <xacro:inertial_cylinder mass="0.3" length="0.06" radius="0.06">
@@ -233,14 +238,14 @@
     </xacro:inertial_cylinder>
   </link>
     <gazebo reference="link_7">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Grey</material>
     </gazebo>
 
   <!-- Joint between link_1 and link_7_clone -->
   <joint name="joint_7_clone" type="continuous">
     <parent link="link_1"/>
     <child link="link_7_clone"/>
-    <origin xyz="0.035 -0.07 -0.06" rpy="0 1.57 0"/>
+    <origin xyz="0.035 -0.07 -0.06" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -248,12 +253,12 @@
   <link name="link_7_clone">
     <visual>
       <geometry>
-        <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-          <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </collision>
     <xacro:inertial_cylinder mass="0.3" length="0.06" radius="0.06">
@@ -261,14 +266,14 @@
     </xacro:inertial_cylinder>
   </link>
     <gazebo reference="link_7_clone">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Grey</material>
     </gazebo>
 
   <!-- Joint between link_1 and link_7_clone_clone -->
   <joint name="joint_7_clone_clone" type="continuous">
     <parent link="link_1"/>
     <child link="link_7_clone_clone"/>
-    <origin xyz="0.035 0.07 -0.06" rpy="0 1.57 0"/>
+    <origin xyz="0.035 0.07 -0.06" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -276,12 +281,12 @@
   <link name="link_7_clone_clone">
     <visual>
       <geometry>
-        <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-          <cylinder radius="0.06" length="0.06"/>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
     </collision>
     <xacro:inertial_cylinder mass="0.3" length="0.06" radius="0.06">
@@ -289,7 +294,7 @@
     </xacro:inertial_cylinder>
   </link>
     <gazebo reference="link_7_clone_clone">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Grey</material>
     </gazebo>
 
 
