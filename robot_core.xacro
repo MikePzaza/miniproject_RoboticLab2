@@ -175,7 +175,7 @@
       <geometry>
         <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/T1V2.dae" scale="1 1 1"/>
       </geometry>
-      <material name="blue"/>
+      <material name="black"/>
     </visual>
     <collision>
       <geometry>
@@ -187,7 +187,7 @@
     </xacro:inertial_box>
   </link>
     <gazebo reference="link_1">
-    <material>Gazebo/Blue</material>
+    <material>Gazebo/Black</material>
     </gazebo>
   
   <!-- Joint between link_1 and base_link -->
@@ -203,7 +203,7 @@
       <geometry>
         <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/T2V2.dae" scale="1 1 1"/>
       </geometry>
-      <material name="blue"/>
+      <material name="black"/>
     </visual>
     <collision>
       <geometry>
@@ -215,7 +215,7 @@
     </xacro:inertial_box>
   </link>
     <gazebo reference="link_2">
-    <material>Gazebo/Blue</material>
+    <material>Gazebo/Black</material>
     </gazebo>
 
   <!-- Joint between link_0 and link_6 -->
