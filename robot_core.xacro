@@ -26,13 +26,16 @@
     <color rgba="0.5 0.5 0.5 1"/>
  </material>
 
+ <material name="yellow">
+    <color rgba="1 1 0 1"/>  <!-- สีเหลือง -->
+ </material>
+
     
   <!-- BASE LINK -->
   <link name="base_link">
   </link>
     
   <!-- BASE_FOOTPRINT LINK -->
-
   <joint name="base_footprint_joint" type="fixed">
     <parent link="base_link"/>
     <child link="base_footprint"/>
@@ -56,6 +59,7 @@
       <geometry>
         <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/baselink.dae" scale="1 1 1"/>
       </geometry>
+      <material name="orange"/>
     </visual>
     <collision>
       <geometry>
@@ -67,7 +71,95 @@
     </xacro:inertial_box>
   </link>
     <gazebo reference="link_0">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Orange</material>
+    </gazebo>
+
+  <!-- Joint between base_link and prop  -->
+  <joint name="joint_03" type="fixed">
+    <parent link="base_link"/>
+    <child link="link_03"/>
+    <origin xyz="-0.0025 0.155 0.17" rpy="0 0 0"/>  
+  </joint>        
+
+
+  <!-- Link 0(prop) -->
+  <link name="link_03">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/prop.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/prop.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <xacro:inertial_box mass="0.2" x="0.369" y="0.105" z="0.404">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_box>
+  </link>
+    <gazebo reference="link_03">
+    <material>Gazebo/Blue</material>
+    </gazebo>
+    
+
+
+  <!-- Joint between link_0 and lackback -->
+  <joint name="joint_01" type="fixed">
+    <parent link="link_0"/>
+    <child link="link_01"/>
+    <origin xyz="-0.00552 0.265 0" rpy="0 0 1.57"/>
+  </joint>
+
+ <!-- Link_01 (lackback)-->
+  <link name="link_01">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/lackback.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/lackback.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <xacro:inertial_box mass="0.1" x="0.48" y="0.005" z="0.17">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_box>
+  </link>
+    <gazebo reference="link_01">
+    <material>Gazebo/Black</material>
+    </gazebo>
+
+
+    <!-- Joint between link_0 and LED -->
+  <joint name="joint_02" type="fixed">
+    <parent link="link_0"/>
+    <child link="link_02"/>
+    <origin xyz="-0.00552 0.265 0.145" rpy="0 0 1.57"/>
+  </joint>
+
+ <!-- Link_01 (LED)-->
+  <link name="link_02">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/LED.dae" scale="1 1 1"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/LED.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <xacro:inertial_box mass="0.03" x="0.45" y="0.005" z="0.03">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_box>
+  </link>
+    <gazebo reference="link_02">
+    <material>Gazebo/Red</material>
     </gazebo>
 
 
@@ -77,13 +169,13 @@
     <child link="link_1"/>
     <origin xyz="0.170 0.08 0.06" rpy="0 0 0"/>
   </joint>
-
   <!-- Link 1 (T1)-->
   <link name="link_1">
     <visual>
       <geometry>
         <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/T1V2.dae" scale="1 1 1"/>
       </geometry>
+      <material name="blue"/>
     </visual>
     <collision>
       <geometry>
@@ -95,7 +187,7 @@
     </xacro:inertial_box>
   </link>
     <gazebo reference="link_1">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Blue</material>
     </gazebo>
   
   <!-- Joint between link_1 and base_link -->
@@ -111,6 +203,7 @@
       <geometry>
         <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/T2V2.dae" scale="1 1 1"/>
       </geometry>
+      <material name="blue"/>
     </visual>
     <collision>
       <geometry>
@@ -122,7 +215,7 @@
     </xacro:inertial_box>
   </link>
     <gazebo reference="link_2">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Blue</material>
     </gazebo>
 
   <!-- Joint between link_0 and link_6 -->
@@ -139,6 +232,7 @@
       <geometry>
         <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
+      <material name="grey"/>
     </visual>
     <collision>
       <geometry>
@@ -167,6 +261,7 @@
       <geometry>
         <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
+      <material name="grey"/>
     </visual>
     <collision>
       <geometry>
@@ -195,6 +290,7 @@
       <geometry>
         <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
+      <material name="grey"/>
     </visual>
     <collision>
       <geometry>
@@ -223,6 +319,7 @@
       <geometry>
         <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
+      <material name="grey"/>
     </visual>
     <collision>
       <geometry>
@@ -251,6 +348,7 @@
       <geometry>
         <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
+      <material name="grey"/>
     </visual>
     <collision>
       <geometry>
@@ -279,6 +377,7 @@
       <geometry>
         <mesh filename="file:///home/mikepzaza/Desktop/project2/src/articubot_two/WV3.dae" scale="1 1 1"/>
       </geometry>
+      <material name="grey"/>
     </visual>
     <collision>
       <geometry>
